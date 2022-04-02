@@ -8,11 +8,18 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 0;
+
         float movementHorizontal = Input.GetAxis("Horizontal");
         bool didJump = Input.GetButtonDown("Jump");
         float movementVertical = Input.GetAxis("Vertical");
+        bool didStartShooting = Input.GetButtonDown("Fire1");
+        bool didStopShooting = Input.GetButtonUp("Fire1");
         
         player.playerMovement.ProcessInput(movementHorizontal, movementVertical, didJump);
+        player.playerShooting.AimAtMouse(Camera.main.ScreenToWorldPoint(mousePos));
+        player.playerShooting.ProcessInput(didStartShooting, didStopShooting);
     }
 
 }
