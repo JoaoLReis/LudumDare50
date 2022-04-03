@@ -40,7 +40,7 @@ public class TimeIncreaseSpawner : MonoBehaviour
     private void Spawn()
     {
         Transform[] availableSpawners = GetAvailableSpawners();
-        int rand = UnityEngine.Random.Range((int)0, (int)availableSpawners.Length);
+        int rand = UnityEngine.Random.Range((int)0, (int)availableSpawners.Length-1);
 
         Instantiate(timeIncreasePrefab, availableSpawners[rand].position, Quaternion.identity);
     }

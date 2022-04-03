@@ -60,7 +60,7 @@ public class SpawnerManager : MonoBehaviour
     private void Spawn(EnemyTypes types)
     {
         Spawner[] availableSpawners = GetAvailableSpawners();
-        int rand = UnityEngine.Random.Range((int)0, (int)availableSpawners.Length);
+        int rand = UnityEngine.Random.Range((int)0, (int)availableSpawners.Length-1);
 
         switch (types)
         {

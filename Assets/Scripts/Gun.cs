@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
 
     public GameObject Shooter {get; set;}
 
-    void Awake()
+    void Start()
     {
         lastShotTime = Time.timeSinceLevelLoad;
     }

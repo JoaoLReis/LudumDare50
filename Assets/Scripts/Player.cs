@@ -17,7 +17,11 @@ public class Player : MonoBehaviour, IDamageable
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();    
-        playerShooting = GetComponent<PlayerShooting>();    
+        playerShooting = GetComponent<PlayerShooting>();  
+    }
+
+    void Start()
+    {  
         lastDamageTakenTime = Time.timeSinceLevelLoad;
     }
 
