@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void HealthExpired()
     {
+        ++GameManager.numKills;
         Destroy(gameObject);
     }
 

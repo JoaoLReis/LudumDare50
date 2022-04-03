@@ -54,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
             currentAirTime = AIR_TIME * 0.5f;
             currentVerticalMovement = 0;
             isDropping = true;
-            Debug.Log("Is Dropping: " + isDropping);
             Invoke("SetNotDropping", 0.2f);
         }
     }
@@ -62,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
     private void SetNotDropping()
     {
         isDropping = false;
-        Debug.Log("SetNotDropping: " + isDropping);
     }
 
     private void ProcessVerticalMovement()
@@ -90,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
             currentVerticalMovement -= GRAVITY * Time.fixedDeltaTime * 5f;
         }
         
-        Debug.Log(currentVerticalMovement);
         frameMovement.y = currentVerticalMovement;
     }
 

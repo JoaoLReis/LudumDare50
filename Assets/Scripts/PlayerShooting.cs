@@ -24,7 +24,6 @@ public class PlayerShooting : MonoBehaviour
 
     public void ProcessInput(bool pressedShooting, bool releasedShooting)
     {
-        Debug.Log("Shooting Pressed: " + pressedShooting + " - Released: " + releasedShooting);
         if(pressedShooting)
             SetShoot(true);
         else if(releasedShooting)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerShooting))]
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public bool isDead;
 
+    public Action onLiveLost;
+    
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();    
@@ -57,6 +60,7 @@ public class Player : MonoBehaviour, IDamageable
             return;
 
         health -= damage;
+        onLiveLost?.Invoke();
         lastDamageTakenTime = Time.timeSinceLevelLoad;
         
         if(health <= 0)
@@ -66,7 +70,6 @@ public class Player : MonoBehaviour, IDamageable
     private void HealthExpired()
     {
         isDead = true;
-        GameManager.isCountingTime = false;
         gameManager.EndGame();
         playerMovement.Reset();
         playerShooting.Reset();

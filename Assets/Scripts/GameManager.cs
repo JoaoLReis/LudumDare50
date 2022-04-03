@@ -9,15 +9,20 @@ public class GameManager : MonoBehaviour
     public MeteorShower meteorShower;
     public EndPopup endPopup;
 
+    public Player player;
+
     public static float timeSinceGameStart = 0;
     public static float timeRemaining;
     public static bool isCountingTime = true;
+
+    public static int numKills = 0;
 
     void Awake()
     {
         timeRemaining = totalTime;
         timeSinceGameStart = 0;
         isCountingTime = true;
+        numKills = 0;
     }
 
     void Update()
@@ -37,6 +42,10 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        isCountingTime = false;
+        player.isDead = true;
+        player.playerMovement.Reset();
+        player.playerShooting.Reset();
         meteorShower.StartMeteorShower();
         endPopup.ShowEndPopup();        
     }

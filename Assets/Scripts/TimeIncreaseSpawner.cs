@@ -19,6 +19,8 @@ public class TimeIncreaseSpawner : MonoBehaviour
 
     private float timeSinceSpawn = 0;
 
+    private bool isSpawning = true;
+
     void Start()
     {
         timeBetweenSpawn = timeBetweenSpawnMax;
@@ -28,7 +30,10 @@ public class TimeIncreaseSpawner : MonoBehaviour
     {
         if(player.isDead)
             return;
-            
+
+        if(!isSpawning)
+            return;
+
         timeSinceSpawn += Time.deltaTime;
 
         if(timeSinceSpawn >= timeBetweenSpawn)
@@ -42,10 +47,17 @@ public class TimeIncreaseSpawner : MonoBehaviour
 
     private void Spawn()
     {
+        isSpawning = false;
         Transform[] availableSpawners = GetAvailableSpawners();
         int rand = UnityEngine.Random.Range((int)0, (int)availableSpawners.Length-1);
 
-        Instantiate(timeIncreasePrefab, availableSpawners[rand].position, Quaternion.identity);
+        Battery battery = Instantiate(timeIncreasePrefab, availableSpawners[rand].position, Quaternion.identity).GetComponent<Battery>();
+        battery.onDestroy += ResetSpawning;
+    }
+
+    private void ResetSpawning()
+    {
+        isSpawning = true;
     }
 
     private Transform[] GetAvailableSpawners()
