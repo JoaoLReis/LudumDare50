@@ -18,6 +18,7 @@ public class InputHandler : MonoBehaviour
         bool didStopShooting = Input.GetButtonUp("Fire1");
         
         player.playerMovement.ProcessInput(movementHorizontal, movementVertical, didJump);
+        player.ProcessMousePos(Camera.main.ScreenToWorldPoint(mousePos));
         player.playerShooting.AimAtMouse(Camera.main.ScreenToWorldPoint(mousePos));
         player.playerShooting.ProcessInput(didStartShooting, didStopShooting);
     }

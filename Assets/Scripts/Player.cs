@@ -8,6 +8,8 @@ public class Player : MonoBehaviour, IDamageable
 {
     public PlayerMovement playerMovement;
     public PlayerShooting playerShooting;
+    public Transform gunVisual;
+    public Transform playerVisual;
 
     public float health = 10;
     public float invulnerableGrace = 0.1f;
@@ -23,6 +25,20 @@ public class Player : MonoBehaviour, IDamageable
     void Start()
     {  
         lastDamageTakenTime = Time.timeSinceLevelLoad;
+    }
+
+    public void ProcessMousePos(Vector3 mousePos)
+    {
+        if(mousePos.x < transform.position.x)
+        {
+            gunVisual.localScale = new Vector3(gunVisual.localScale.x, Mathf.Abs(gunVisual.localScale.y) * -1, gunVisual.localScale.z);
+            playerVisual.localScale = new Vector3(Mathf.Abs(playerVisual.localScale.x) * -1, playerVisual.localScale.y, playerVisual.localScale.z);
+        }
+        else
+        {
+            gunVisual.localScale = new Vector3(gunVisual.localScale.x, Mathf.Abs(gunVisual.localScale.y), gunVisual.localScale.z);
+            playerVisual.localScale = new Vector3(Mathf.Abs(playerVisual.localScale.x), playerVisual.localScale.y, playerVisual.localScale.z);
+        }
     }
 
     public void TakeDamage(float damage)
