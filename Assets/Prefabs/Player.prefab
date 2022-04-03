@@ -164,9 +164,9 @@ GameObject:
   - component: {fileID: 6742396991655737800}
   - component: {fileID: 3325938706907047668}
   - component: {fileID: 2861680979820493349}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +284,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
   playerShooting: {fileID: 0}
+  health: 10
+  invulnerableGrace: 0.1
+  lastDamageTakenTime: 0
 --- !u!114 &3325938706907047668
 MonoBehaviour:
   m_ObjectHideFlags: 0

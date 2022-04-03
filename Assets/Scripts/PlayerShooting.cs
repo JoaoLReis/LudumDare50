@@ -13,6 +13,7 @@ public class PlayerShooting : MonoBehaviour
     void Awake()
     {
         gun = GetComponent<Gun>();
+        gun.Shooter = gameObject;
     }
 
     public void AimAtMouse(Vector3 mousePosition)

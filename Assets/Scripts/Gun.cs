@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
 
     private float lastShotTime;
 
+    public GameObject Shooter {get; set;}
+
     void Awake()
     {
         lastShotTime = Time.timeSinceLevelLoad;
@@ -25,6 +27,9 @@ public class Gun : MonoBehaviour
     {
         lastShotTime = Time.timeSinceLevelLoad;
         GameObject go = Instantiate(prefab, gunEnd.position, gunEnd.rotation);
+        Bullet bullet = go.GetComponent<Bullet>();
+        bullet.shooter = Shooter;
+        bullet.Damage = damage;
         Destroy(go, 2f);
     }
 }

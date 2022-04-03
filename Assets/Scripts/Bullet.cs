@@ -6,22 +6,33 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    public Rigidbody2D rigidbody;
-
+    public GameObject shooter;
     public float bulletSpeed;
+
+    private Rigidbody2D rigidb;
+
+    public float Damage {get; set;}
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
-        rigidbody.AddForce(transform.right * bulletSpeed);
+        rigidb.AddForce(transform.right * bulletSpeed);
     }
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
+        if(collisionInfo.gameObject == shooter)
+            return; 
+            
+        IDamageable damageable = collisionInfo.gameObject.GetComponent<IDamageable>();
+
+        if(damageable != null)
+            damageable.TakeDamage(Damage);
+
         Destroy(gameObject);
     }
 }
