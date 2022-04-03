@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  jumpStrength: 15
+  jumpStrength: 20
 --- !u!114 &6742396991655737800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ac71ce78d465440bbd0b2d9b421f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
   attackSpeed: 0.2
   prefab: {fileID: 7633671087381654763, guid: 6ef03b3491c6a4942954e2f1223cfa30, type: 3}
   gunEnd: {fileID: 1113356540}

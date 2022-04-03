@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
-    public float timeBetweenMeleeSpawn = 0.5f;
-    public float timeBetweenRangedSpawn = 1.5f;
-    public float timeBetweenOtherSpawn = 3.5f;
+    public float timeBetweenMeleeSpawnMax = 1f;
+    public float timeBetweenRangedSpawnMax = 2.5f;
+    public float timeBetweenOtherSpawnMax = 4.5f;
+
+    private float timeBetweenMeleeSpawn = 1f;
+    private float timeBetweenRangedSpawn = 2.5f;
+    private float timeBetweenOtherSpawn = 4.5f;
+
+    public float stepIncrease = 0.1f;
+    public float timeBetweenIncrease = 10f;
 
     public float distanceToSpawn = 15;
 
@@ -17,6 +24,13 @@ public class SpawnerManager : MonoBehaviour
     private float timeSinceMeleeSpawn = 0;
     private float timeSinceRangedSpawn = 0;
     private float timeSinceOtherSpawn = 0;
+
+    void Start()
+    {
+        timeBetweenMeleeSpawn = timeBetweenMeleeSpawnMax;
+        timeBetweenRangedSpawn = timeBetweenRangedSpawnMax;
+        timeBetweenOtherSpawn = timeBetweenOtherSpawnMax;
+    }
 
     void Update()
     {
@@ -39,6 +53,8 @@ public class SpawnerManager : MonoBehaviour
             Spawn(EnemyTypes.Other);
             timeSinceOtherSpawn = 0;
         }
+
+        UpdateSpawnTimes();
     }
 
     private void Spawn(EnemyTypes types)
@@ -76,5 +92,12 @@ public class SpawnerManager : MonoBehaviour
         }
 
         return availableSpawners.ToArray();
+    }
+
+    private void UpdateSpawnTimes()
+    {
+        timeBetweenMeleeSpawn = Mathf.Max(0.5f, timeBetweenMeleeSpawnMax - (stepIncrease * (GameManager.timeSinceGameStart/timeBetweenIncrease)));
+        timeBetweenRangedSpawn = Mathf.Max(0.5f, timeBetweenRangedSpawnMax - (stepIncrease * (GameManager.timeSinceGameStart/timeBetweenIncrease)));
+        timeBetweenOtherSpawn = Mathf.Max(0.5f, timeBetweenOtherSpawnMax - (stepIncrease * (GameManager.timeSinceGameStart/timeBetweenIncrease)));
     }    
 }

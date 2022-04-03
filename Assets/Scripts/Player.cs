@@ -35,6 +35,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void HealthExpired()
     {
+        GameManager.isCountingTime = false;
         Destroy(gameObject);
     }
 
