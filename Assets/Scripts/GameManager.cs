@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public int totalTime;
 
+    public MeteorShower meteorShower;
+    public EndPopup endPopup;
+
     public static float timeSinceGameStart = 0;
     public static float timeRemaining;
     public static bool isCountingTime = true;
@@ -13,6 +16,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         timeRemaining = totalTime;
+        timeSinceGameStart = 0;
+        isCountingTime = true;
     }
 
     void Update()
@@ -30,8 +35,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EndGame()
+    public void EndGame()
     {
-        Debug.Log("Game Ended");
+        meteorShower.StartMeteorShower();
+        endPopup.ShowEndPopup();        
     }
 }

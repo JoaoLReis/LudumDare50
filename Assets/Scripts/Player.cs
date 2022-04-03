@@ -11,10 +11,14 @@ public class Player : MonoBehaviour, IDamageable
     public Transform gunVisual;
     public Transform playerVisual;
 
+    public GameManager gameManager;
+
     public float health = 10;
     public float invulnerableGrace = 0.1f;
 
     public float lastDamageTakenTime;
+
+    public bool isDead;
 
     void Awake()
     {
@@ -29,6 +33,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public void ProcessMousePos(Vector3 mousePos)
     {
+        if(isDead)
+            return;
+        
         if(mousePos.x < transform.position.x)
         {
             gunVisual.localScale = new Vector3(gunVisual.localScale.x, Mathf.Abs(gunVisual.localScale.y) * -1, gunVisual.localScale.z);
@@ -43,6 +50,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if(isDead)
+            return;
+
         if(Time.timeSinceLevelLoad - lastDamageTakenTime <= invulnerableGrace)
             return;
 
@@ -55,8 +65,11 @@ public class Player : MonoBehaviour, IDamageable
 
     private void HealthExpired()
     {
+        isDead = true;
         GameManager.isCountingTime = false;
-        Destroy(gameObject);
+        gameManager.EndGame();
+        playerMovement.Reset();
+        playerShooting.Reset();
     }
 
 }

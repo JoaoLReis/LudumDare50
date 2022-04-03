@@ -8,6 +8,9 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
+        if(player.isDead)
+            return;
+
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0;
 

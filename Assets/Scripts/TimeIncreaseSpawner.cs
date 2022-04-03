@@ -14,7 +14,7 @@ public class TimeIncreaseSpawner : MonoBehaviour
     public float distanceToSpawn = 15;
 
     public Transform[] spawners;
-    public GameObject player;
+    public Player player;
     public GameObject timeIncreasePrefab;
 
     private float timeSinceSpawn = 0;
@@ -26,6 +26,9 @@ public class TimeIncreaseSpawner : MonoBehaviour
 
     void Update()
     {
+        if(player.isDead)
+            return;
+            
         timeSinceSpawn += Time.deltaTime;
 
         if(timeSinceSpawn >= timeBetweenSpawn)

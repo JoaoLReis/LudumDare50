@@ -140,6 +140,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        frameMovement = Vector2.zero;
+    }
+
     void FixedUpdate()
     {
         ProcessVerticalMovement();

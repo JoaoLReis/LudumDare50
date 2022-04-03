@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public float moveSpeed;
 
-    private GameObject target;
+    private Player target;
 
     private Transform currentPlatform;
 
@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake()
     {
-        target = GameObject.FindWithTag("Player");    
+        target = GameObject.FindWithTag("Player").GetComponent<Player>();    
     }
 
     void Start()
@@ -33,6 +33,9 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(target.isDead)
+            return;
+            
         transform.Translate(new Vector3(direction * moveSpeed * Time.fixedDeltaTime, 0, 0));
     }
 }

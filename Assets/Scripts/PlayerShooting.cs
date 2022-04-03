@@ -36,6 +36,11 @@ public class PlayerShooting : MonoBehaviour
         isShooting = value; 
     }
 
+    public void Reset()
+    {
+        isShooting = false;
+    }
+
     void Update()
     {
         if(isShooting)

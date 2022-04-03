@@ -19,7 +19,7 @@ public class SpawnerManager : MonoBehaviour
     public float distanceToSpawn = 15;
 
     public Spawner[] spawners;
-    public GameObject player;
+    public Player player;
 
     private float timeSinceMeleeSpawn = 0;
     private float timeSinceRangedSpawn = 0;
@@ -34,6 +34,9 @@ public class SpawnerManager : MonoBehaviour
 
     void Update()
     {
+        if(player.isDead)
+            return;
+            
         timeSinceMeleeSpawn += Time.deltaTime;
         timeSinceRangedSpawn += Time.deltaTime;
         timeSinceOtherSpawn += Time.deltaTime;
