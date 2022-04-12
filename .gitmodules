@@ -1,0 +1,3 @@
+[submodule "Libraries/RADCharacterController"]
+	path = Libraries/RADCharacterController
+	url = https://github.com/JoaoLReis/RADCharacterController.git
