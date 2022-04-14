@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     {
         isCountingTime = false;
         player.isDead = true;
-        player.playerMovement.Reset();
-        player.playerShooting.Reset();
+        player.playerMovement2D.Reset();
+        player.playerShooting2D.Reset();
         meteorShower.StartMeteorShower();
         endPopup.ShowEndPopup();        
     }

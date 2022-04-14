@@ -1,16 +1,16 @@
 using RADCharacterController;
 using UnityEngine;
 
-[RequireComponent(typeof(Weapon))]
+[RequireComponent(typeof(Weapon2D))]
 public class Enemy : MonoBehaviour, IDamageable
 {
     public float health = 10;
 
-    private Weapon gun;
+    private Weapon2D gun;
 
     private void Awake()
     {
-        gun = GetComponent<Weapon>();
+        gun = GetComponent<Weapon2D>();
         gun.Shooter = gameObject;
     }
 

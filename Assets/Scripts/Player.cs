@@ -1,13 +1,14 @@
 using System;
 using RADCharacterController;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(PlayerShooting))]
+[RequireComponent(typeof(PlayerMovement2D))]
+[RequireComponent(typeof(PlayerShooting2D))]
 public class Player : MonoBehaviour, IDamageable
 {
-    public PlayerMovement playerMovement;
-    public PlayerShooting playerShooting;
+    [FormerlySerializedAs("playerMovement")] public PlayerMovement2D playerMovement2D;
+    [FormerlySerializedAs("playerShooting")] public PlayerShooting2D playerShooting2D;
     public Transform gunVisual;
     public Transform playerVisual;
 
@@ -24,8 +25,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        playerShooting = GetComponent<PlayerShooting>();
+        playerMovement2D = GetComponent<PlayerMovement2D>();
+        playerShooting2D = GetComponent<PlayerShooting2D>();
     }
 
     private void Start()
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         isDead = true;
         gameManager.EndGame();
-        playerMovement.Reset();
-        playerShooting.Reset();
+        playerMovement2D.Reset();
+        playerShooting2D.Reset();
     }
 }

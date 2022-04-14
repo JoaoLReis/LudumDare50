@@ -20,10 +20,10 @@ public class InputHandler : MonoBehaviour
         bool didStartShooting = Input.GetButtonDown("Fire1");
         bool didStopShooting = Input.GetButtonUp("Fire1");
         
-        player.playerMovement.ProcessInput(movementHorizontal, movementVertical, didJump);
+        player.playerMovement2D.ProcessInput(movementHorizontal, movementVertical, didJump);
         player.ProcessMousePos(Camera.main.ScreenToWorldPoint(mousePos));
-        player.playerShooting.AimAtMouse(Camera.main.ScreenToWorldPoint(mousePos));
-        player.playerShooting.ProcessInput(didStartShooting, didStopShooting);
+        player.playerShooting2D.AimAtMouse(Camera.main.ScreenToWorldPoint(mousePos));
+        player.playerShooting2D.ProcessInput(didStartShooting, didStopShooting);
     }
 
 }
