@@ -1,25 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using RADCharacterController;
 using UnityEngine;
 
-[RequireComponent(typeof(Gun))]
+[RequireComponent(typeof(Weapon))]
 public class Enemy : MonoBehaviour, IDamageable
 {
     public float health = 10;
 
-    private Gun gun;
+    private Weapon gun;
 
-    void Awake()
+    private void Awake()
     {
-        gun = GetComponent<Gun>();
+        gun = GetComponent<Weapon>();
         gun.Shooter = gameObject;
+    }
+
+    private void OnCollisionStay2D(Collision2D collisionInfo)
+    {
+        if (collisionInfo.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            var damageable = collisionInfo.gameObject.GetComponent<IDamageable>();
+            damageable.TakeDamage(gun.damage);
+        }
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
 
-        if(health <= 0)
+        if (health <= 0)
             HealthExpired();
     }
 
@@ -27,14 +35,5 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         ++GameManager.numKills;
         Destroy(gameObject);
-    }
-
-    void OnCollisionStay2D(Collision2D collisionInfo)
-    {
-        if(collisionInfo.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            IDamageable damageable = collisionInfo.gameObject.GetComponent<IDamageable>();
-            damageable.TakeDamage(gun.damage);
-        }
     }
 }

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using RADCharacterController;
+using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerShooting))]
@@ -22,49 +21,53 @@ public class Player : MonoBehaviour, IDamageable
     public bool isDead;
 
     public Action onLiveLost;
-    
-    void Awake()
+
+    private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovement>();    
-        playerShooting = GetComponent<PlayerShooting>();  
+        playerMovement = GetComponent<PlayerMovement>();
+        playerShooting = GetComponent<PlayerShooting>();
     }
 
-    void Start()
-    {  
+    private void Start()
+    {
         lastDamageTakenTime = Time.timeSinceLevelLoad;
-    }
-
-    public void ProcessMousePos(Vector3 mousePos)
-    {
-        if(isDead)
-            return;
-        
-        if(mousePos.x < transform.position.x)
-        {
-            gunVisual.localScale = new Vector3(gunVisual.localScale.x, Mathf.Abs(gunVisual.localScale.y) * -1, gunVisual.localScale.z);
-            playerVisual.localScale = new Vector3(Mathf.Abs(playerVisual.localScale.x) * -1, playerVisual.localScale.y, playerVisual.localScale.z);
-        }
-        else
-        {
-            gunVisual.localScale = new Vector3(gunVisual.localScale.x, Mathf.Abs(gunVisual.localScale.y), gunVisual.localScale.z);
-            playerVisual.localScale = new Vector3(Mathf.Abs(playerVisual.localScale.x), playerVisual.localScale.y, playerVisual.localScale.z);
-        }
     }
 
     public void TakeDamage(float damage)
     {
-        if(isDead)
+        if (isDead)
             return;
 
-        if(Time.timeSinceLevelLoad - lastDamageTakenTime <= invulnerableGrace)
+        if (Time.timeSinceLevelLoad - lastDamageTakenTime <= invulnerableGrace)
             return;
 
         health -= damage;
         onLiveLost?.Invoke();
         lastDamageTakenTime = Time.timeSinceLevelLoad;
-        
-        if(health <= 0)
+
+        if (health <= 0)
             HealthExpired();
+    }
+
+    public void ProcessMousePos(Vector3 mousePos)
+    {
+        if (isDead)
+            return;
+
+        if (mousePos.x < transform.position.x)
+        {
+            gunVisual.localScale = new Vector3(gunVisual.localScale.x, Mathf.Abs(gunVisual.localScale.y) * -1,
+                gunVisual.localScale.z);
+            playerVisual.localScale = new Vector3(Mathf.Abs(playerVisual.localScale.x) * -1,
+                playerVisual.localScale.y, playerVisual.localScale.z);
+        }
+        else
+        {
+            gunVisual.localScale = new Vector3(gunVisual.localScale.x, Mathf.Abs(gunVisual.localScale.y),
+                gunVisual.localScale.z);
+            playerVisual.localScale = new Vector3(Mathf.Abs(playerVisual.localScale.x), playerVisual.localScale.y,
+                playerVisual.localScale.z);
+        }
     }
 
     private void HealthExpired()
@@ -74,5 +77,4 @@ public class Player : MonoBehaviour, IDamageable
         playerMovement.Reset();
         playerShooting.Reset();
     }
-
 }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8942238032457239124}
   - component: {fileID: 8942238032457239127}
   - component: {fileID: 8942238032457239126}
-  - component: {fileID: 8942238032457239115}
   - component: {fileID: 8942238032457239114}
   - component: {fileID: 1308184963225723609}
+  - component: {fileID: 6398846051341183141}
   m_Layer: 7
   m_Name: RangedEnemy
   m_TagString: Untagged
@@ -137,22 +137,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8942238032457239115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942238032457239121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ac71ce78d465440bbd0b2d9b421f54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  attackSpeed: 10
-  prefab: {fileID: 0}
-  gunEnd: {fileID: 0}
 --- !u!114 &8942238032457239114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +163,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+--- !u!114 &6398846051341183141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942238032457239121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb34c616b47e6a4a8b115d535c0f5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackSpeed: 0.5
+  bulletPrefab: {fileID: 0}
+  gunEnd: {fileID: 0}

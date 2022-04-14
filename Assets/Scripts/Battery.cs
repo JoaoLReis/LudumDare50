@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using RADCharacterController;
+using UnityEngine;
 
 public class Battery : MonoBehaviour, IDamageable
 {
@@ -14,7 +13,7 @@ public class Battery : MonoBehaviour, IDamageable
     {
         health -= damage;
 
-        if(health <= 0)
+        if (health <= 0)
             HealthExpired();
     }
 
